@@ -92,25 +92,7 @@ public class TocHw4 {
 				
 			 if(argv.length == 1)
 			 {
-			 //System.out.println("Copy JSON file from the URL!");
-			 //System.out.println("Please wait...");
-			 
-			 //---
-			 //the following code between (//---) referenced from the website below
-			 //http://robertvmp.pixnet.net/blog/post/26585200-java---%E8%AE%80%E7%B6%B2%E9%A0%81%E7%AF%84%E4%BE%8B-
 			 URL pageUrl = new URL(argv[0]);
-			 /*
-			 BufferedReader buffer_input_string = new BufferedReader(new InputStreamReader(pageUrl.openStream(), "UTF-8"));
-			 BufferedWriter buffer_output_string = new BufferedWriter(new FileWriter("JSON_HW4.json", false));
-			 String oneLine = null ;
-			 while ((oneLine = buffer_input_string.readLine()) != null) {
-				 	buffer_output_string.write(oneLine);                
-	            }
-			 buffer_output_string.close();
-			 buffer_input_string.close(); 
-			 //---
-			 */
-			 //JSONArray obj = new JSONArray(new JSONTokener(new FileReader(new File("JSON_HW4.json"))));  
 			 BufferedReader in = new BufferedReader(new InputStreamReader(pageUrl.openStream(),"UTF-8"));
 			 JSONArray obj = new JSONArray(new JSONTokener(in));
 			 
@@ -130,15 +112,10 @@ public class TocHw4 {
 					 JSONObject ob = obj.getJSONObject(index);
 					 index++;
 					 
-					 //System.out.println(data_list.size());
-					 //System.out.printf("%d \n" , data_list.size());
-					 
 					 road_to_compare = ob.getString("土地區段位置或建物區門牌");
 					 cut_value_road = road_to_compare.indexOf("路");
 					 cut_value_alley = road_to_compare.indexOf("巷");
 					 cut_value_street = road_to_compare.indexOf("街");
-					 
-					 
 					 
 					 if (cut_value_road == -1 && cut_value_alley == -1 && cut_value_street == -1)
 						 continue;
@@ -263,8 +240,6 @@ public class TocHw4 {
 			 
 			 int max_distinct_month = 0;
 			 
-			 //System.out.print(data_list.get(index).get_Address_content());
-			 
 			 for (int i = 0 ; i<data_list.size() ;i++){
 				 if(data_list.get(i).get_max_distinct_month() > max_distinct_month){
 					 max_distinct_month = data_list.get(i).get_max_distinct_month();
@@ -273,11 +248,8 @@ public class TocHw4 {
 			 
 			 for (int i = 0 ; i<data_list.size() ;i++){
 				 if(data_list.get(i).get_max_distinct_month() == max_distinct_month){
-				 //if(data_list.get(i).get_Address_content().indexOf("忠明南路") != -1){
-					 //System.out.printf("%d \t" , i);
 					 System.out.print(data_list.get(i).get_Address_content());
 					 System.out.printf(", 最高成交價: "+"%d, " + "最低成交價: "+"%d" ,data_list.get(i).get_max_trade(), data_list.get(i).get_min_trade());
-					 //System.out.printf("\t%d \t" , data_list.get(i).get_max_distinct_month());
 					 System.out.println("");
 				 }//enf if
 			 }//end for
